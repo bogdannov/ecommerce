@@ -1,0 +1,40 @@
+# Configuration with sensitive data
+wp-config.php
+
+# Logs
+*.log
+error_log
+debug.log
+
+# IDE and System Files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Temporary and private directories
+.private/
+.well-known/
+*.bak
+*.tmp
+*.temp
+
+# Backup files
+*.bk
+*_original
+
+# Node modules (if used)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Composer vendor (if used)
+/vendor/
+
+# Build artifacts
+*.sass-cache/
+*.css.map
+*.js.map

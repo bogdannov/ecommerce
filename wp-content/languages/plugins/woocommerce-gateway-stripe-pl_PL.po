@@ -1,0 +1,928 @@
+# Translation of Plugins - WooCommerce Stripe Payment Gateway - Stable (latest release) in Polish
+# This file is distributed under the same license as the Plugins - WooCommerce Stripe Payment Gateway - Stable (latest release) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2025-07-03 07:57:33+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n == 1) ? 0 : ((n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14)) ? 1 : 2);\n"
+"X-Generator: GlotPress/4.0.3\n"
+"Language: pl\n"
+"Project-Id-Version: Plugins - WooCommerce Stripe Payment Gateway - Stable (latest release)\n"
+
+#: includes/payment-methods/class-wc-stripe-upe-payment-method-wechat-pay.php:19
+#: includes/payment-methods/class-wc-stripe-upe-payment-method-wechat-pay.php:37
+#: build/amazon-pay-settings.js:3 build/express-checkout-settings.js:3
+#: build/payment-gateways.js:3 build/upe-settings.js:3
+msgid "WeChat Pay"
+msgstr "WeChat Pay"
+
+#. translators: localized exception message
+#: includes/payment-methods/class-wc-stripe-upe-payment-gateway.php:1344
+msgid "Payment failed: %s"
+msgstr "Płatność UPE zakończona niepowodzeniem: %s"
+
+#: includes/admin/stripe-settings.php:216
+#: includes/admin/stripe-settings.php:276
+msgid "Small (40px)"
+msgstr "Mały (40 piks.)"
+
+#: includes/class-wc-stripe-blocks-support.php:329
+msgctxt "Name of credit card"
+msgid "Discover"
+msgstr "Odkrywaj"
+
+#: includes/abstracts/abstract-wc-stripe-payment-gateway-voucher.php:334
+msgid "stripe - Order"
+msgstr "stripe - Zamówienie"
+
+#: includes/admin/class-wc-rest-stripe-settings-controller.php:65
+msgid "Stripe test mode setting."
+msgstr "Ustawienie trybu testowego Stripe."
+
+#: includes/class-wc-stripe-status.php:164 build/upe-settings.js:4
+#: build/upe-settings.js:5
+msgid "Disabled"
+msgstr "Wyłączone"
+
+#: includes/admin/stripe-settings.php:149 build/express-checkout-settings.js:4
+msgid "Book"
+msgstr "Książka"
+
+#: includes/class-wc-stripe-status.php:161
+#: includes/payment-methods/class-wc-stripe-upe-payment-gateway.php:2152
+#: build/upe-settings.js:4 build/upe-settings.js:5
+msgid "Enabled"
+msgstr "Włączone"
+
+#: includes/class-wc-stripe-status.php:99
+#: includes/class-wc-stripe-status.php:115
+#: includes/class-wc-stripe-status.php:129
+#: includes/class-wc-stripe-status.php:143
+#: includes/class-wc-stripe-status.php:180
+#: includes/class-wc-stripe-status.php:195
+#: includes/payment-methods/class-wc-stripe-upe-payment-gateway.php:2185
+msgid "No"
+msgstr "Nie"
+
+#: includes/admin/stripe-settings.php:212
+#: includes/admin/stripe-settings.php:272
+msgid "Select the size of the button."
+msgstr "Wybierz rozmiar przycisku."
+
+#: includes/class-wc-stripe-status.php:99
+#: includes/class-wc-stripe-status.php:115
+#: includes/class-wc-stripe-status.php:129
+#: includes/class-wc-stripe-status.php:143
+#: includes/class-wc-stripe-status.php:180
+#: includes/class-wc-stripe-status.php:195
+#: includes/payment-methods/class-wc-stripe-upe-payment-gateway.php:2185
+msgid "Yes"
+msgstr "Tak"
+
+#: includes/payment-methods/class-wc-stripe-upe-payment-gateway.php:2162
+msgid "disabled"
+msgstr "wyłączone"
+
+#: includes/payment-methods/class-wc-stripe-upe-payment-gateway.php:2162
+msgid "enabled"
+msgstr "włączone"
+
+#: includes/admin/stripe-settings.php:202
+#: includes/admin/stripe-settings.php:262 build/amazon-pay-settings.js:4
+#: build/express-checkout-settings.js:4
+msgid "Checkout"
+msgstr "Zamówienie"
+
+#: includes/admin/stripe-settings.php:194
+msgid "Payment Request Button Locations"
+msgstr "Lokalizacje przycisków żądania płatności"
+
+#: includes/admin/stripe-settings.php:206
+#: includes/admin/stripe-settings.php:266
+msgid "Select pages"
+msgstr "Wybierz strony"
+
+#: includes/admin/stripe-settings.php:196
+msgid "Select where you would like Payment Request Buttons to be displayed"
+msgstr "Wybierz, gdzie mają być wyświetlane przyciski żądania płatności"
+
+#: includes/class-wc-stripe-blocks-support.php:333
+msgid "JCB"
+msgstr "JCB"
+
+#: includes/class-wc-stripe-blocks-support.php:337
+msgid "Diners"
+msgstr "Diners"
+
+#: includes/class-wc-stripe-blocks-support.php:314
+msgid "Visa"
+msgstr "Visa"
+
+#: includes/class-wc-stripe-blocks-support.php:318
+msgid "American Express"
+msgstr "American Express"
+
+#: includes/class-wc-stripe-blocks-support.php:322
+msgid "Mastercard"
+msgstr "Mastercard"
+
+#: includes/abstracts/abstract-wc-stripe-payment-gateway.php:386
+#: includes/class-wc-stripe-blocks-support.php:302
+#: includes/payment-methods/class-wc-stripe-upe-payment-method-cc.php:24
+#: includes/payment-methods/class-wc-stripe-upe-payment-method-cc.php:26
+#: build/index.js:1
+msgid "Credit / Debit Card"
+msgstr "Karta kredytowa/debetowa"
+
+#: includes/class-wc-stripe-webhook-state.php:166
+msgid "No error"
+msgstr "Brak błędu"
+
+#: includes/class-wc-stripe-webhook-state.php:202
+msgid "Unknown error."
+msgstr "Nieznany błąd."
+
+#: includes/admin/stripe-settings.php:178
+msgid "Buy now"
+msgstr "Kup teraz"
+
+#: includes/class-wc-stripe.php:471
+msgid "View Documentation"
+msgstr "Zobacz dokumentację"
+
+#: includes/compat/trait-wc-stripe-subscriptions.php:1187
+msgid "Your early renewal order was successful."
+msgstr "Twoje odnowienie zakończyło się sukcesem."
+
+#: templates/emails/failed-preorder-authentication.php:57
+msgid "Thanks for shopping with us."
+msgstr "Dziękujemy za zakupy w naszym sklepie."
+
+#: templates/emails/failed-renewal-authentication-requested.php:36
+#: templates/emails/plain/failed-renewal-authentication-requested.php:26
+msgid "The renewal order is as follows:"
+msgstr "Szczegóły zamówienia odnowienia:"
+
+#: includes/class-wc-stripe-helper.php:292 build/index.js:1
+msgid "Invalid email address, please correct and try again."
+msgstr "Nieprawidłowy adres e-mail, popraw go i spróbuj ponownie."
+
+#: includes/admin/stripe-settings.php:82 includes/admin/stripe-settings.php:89
+msgid "Get your webhook signing secret from the webhooks section in your stripe account."
+msgstr "Uzyskaj swój klucz do podpisywania webhook z sekcji webhooks na koncie w paski."
+
+#: includes/admin/stripe-settings.php:80
+msgid "Test Webhook Secret"
+msgstr "Test Webhook Secret"
+
+#: includes/class-wc-gateway-stripe.php:676
+msgid ""
+"Almost there!\n"
+"\n"
+"Your order has already been created, the only thing that still needs to be done is for you to authorize the payment with your bank."
+msgstr ""
+"Już prawie!\n"
+"\n"
+"Twoje zamówienie zostało już utworzone, jedyną rzeczą, którą musisz jeszcze zrobić, jest autoryzacja płatności w banku."
+
+#: includes/class-wc-stripe-intent-controller.php:85
+#: includes/class-wc-stripe-intent-controller.php:681
+#: includes/class-wc-stripe-intent-controller.php:744
+#: includes/class-wc-stripe-intent-controller.php:1301
+msgid "CSRF verification failed."
+msgstr "Weryfikacja CSRF nie powiodła się."
+
+#: includes/class-wc-stripe-intent-controller.php:98
+msgid "Missing order ID for payment confirmation"
+msgstr "Brak identyfikatora zamówienia do potwierdzenia płatności"
+
+#. translators: Error message text
+#: includes/class-wc-stripe-intent-controller.php:139
+msgid "Payment verification error: %s"
+msgstr "Błąd weryfikacji płatności: %s"
+
+#: includes/class-wc-gateway-stripe.php:957
+msgid "Stripe SCA authentication failed."
+msgstr "Uwierzytelnienie Stripe SCA nie powiodło się."
+
+#. translators: 1) The error message that was received from Stripe.
+#: includes/class-wc-gateway-stripe.php:956
+#: includes/class-wc-stripe-webhook-handler.php:1175
+#: includes/class-wc-stripe-webhook-handler.php:1253
+msgid "Stripe SCA authentication failed. Reason: %s"
+msgstr "Uwierzytelnienie Stripe SCA nie powiodło się. Powód: %s"
+
+#: includes/abstracts/abstract-wc-stripe-payment-gateway.php:2281
+msgid "We couldn't initiate the payment. Please try again."
+msgstr "Nie mogliśmy rozpocząć płatności. Proszę spróbować jeszcze raz."
+
+#: includes/abstracts/abstract-wc-stripe-payment-gateway.php:888
+#: includes/abstracts/abstract-wc-stripe-payment-gateway.php:2278
+msgid "Sorry, we're not accepting prepaid cards at this time. Your credit card has not been charged. Please try with alternative payment method."
+msgstr "Przepraszamy, w tym momencie nie przyjmujemy kart przedpłaconych. Twoja karta nie została obciążona. Proszę spróbować z alternatywną metodą płatności."
+
+#. translators: 1) product name 2) quantity in stock
+#: includes/payment-methods/class-wc-stripe-express-checkout-ajax-handler.php:279
+#: includes/payment-methods/class-wc-stripe-payment-request.php:1386
+msgid "You cannot add that amount of \"%1$s\"; to the cart because there is not enough stock (%2$s remaining)."
+msgstr "Nie można dodać tej ilości \"%1$s\"; do koszyka, ponieważ nie ma wystarczającej ilości w magazynie (pozostało %2$s)."
+
+#: includes/abstracts/abstract-wc-stripe-payment-gateway.php:2292
+msgid "Billing First Name and Last Name are required."
+msgstr "Imię i nazwisko są wymagane."
+
+#: includes/admin/class-wc-stripe-privacy.php:44
+msgid "Retain Stripe Data"
+msgstr "Zachowaj dane Stripe"
+
+#. translators: %d Order ID
+#: includes/admin/class-wc-stripe-privacy.php:364
+msgid "Order ID %d contains an active Subscription. Personal data retained. (Stripe)"
+msgstr "Zamówienie %d zawiera aktywną subskrypcję. Dane osobowe zostały zachowane. (Stripe)"
+
+#. translators: %d Order ID
+#: includes/admin/class-wc-stripe-privacy.php:359
+#: includes/admin/class-wc-stripe-privacy.php:396
+msgid "Order ID %d is less than set retention days. Personal data retained. (Stripe)"
+msgstr "Zamówienie %d jest mniejsze niż ustawione dni przechowywania. Dane osobowe zostały zachowane. (Stripe)"
+
+#: includes/admin/class-wc-stripe-privacy.php:45
+msgid "Retains any Stripe data such as Stripe customer ID, source ID."
+msgstr "Zachowuje wszelkie dane Stripe, takie jak ID klienta, ID źródła."
+
+#: includes/admin/class-wc-stripe-privacy.php:407
+msgid "Stripe personal data erased."
+msgstr "Dane osobowe Stripe zostały usunięte."
+
+#: includes/admin/class-wc-stripe-privacy.php:379
+msgid "Stripe Subscription Data Erased."
+msgstr "Dane subskrypcji Stripe zostały usunięte."
+
+#: includes/admin/class-wc-stripe-privacy.php:280
+msgid "Stripe User Data Erased."
+msgstr "Dane użytkowników Stripe zostały usunięte."
+
+#: includes/admin/class-wc-stripe-privacy.php:234
+msgid "Customer Data"
+msgstr "Dane klienta"
+
+#: includes/admin/class-wc-stripe-privacy.php:194
+msgid "Subscriptions"
+msgstr "Subskrypcje"
+
+#: includes/admin/class-wc-stripe-privacy.php:137
+#: includes/admin/class-wc-stripe-privacy.php:202
+#: includes/admin/class-wc-stripe-privacy.php:242
+msgid "Stripe customer id"
+msgstr "ID klienta Stripe"
+
+#: includes/admin/class-wc-stripe-privacy.php:133
+#: includes/admin/class-wc-stripe-privacy.php:198
+#: includes/admin/class-wc-stripe-privacy.php:238
+msgid "Stripe payment id"
+msgstr "ID płatności Stripe"
+
+#: includes/admin/class-wc-stripe-privacy.php:129
+msgid "Orders"
+msgstr "Zamówienia"
+
+#: includes/admin/class-wc-stripe-privacy.php:32
+msgid "WooCommerce Stripe Data"
+msgstr "Dane WooCommerce Stripe"
+
+#: includes/admin/class-wc-stripe-privacy.php:29
+#: includes/admin/class-wc-stripe-privacy.php:31
+msgid "WooCommerce Stripe Customer Data"
+msgstr "Dane klientów WooCommerce Stripe"
+
+#: includes/admin/class-wc-stripe-privacy.php:26
+msgid "WooCommerce Stripe Subscriptions Data"
+msgstr "Dane subskrypcji WooCommerce Stripe"
+
+#: includes/admin/class-wc-stripe-privacy.php:23
+msgid "WooCommerce Stripe Order Data"
+msgstr "Dane zamówień WooCommerce Stripe"
+
+#. translators: partial captured amount
+#: includes/class-wc-stripe-webhook-handler.php:535
+msgid "This charge was partially captured via Stripe Dashboard in the amount of: %s"
+msgstr "Płatność została częściowo przechwycona przez Stripe Dashboard w wysokości: %s"
+
+#: includes/class-wc-stripe.php:542
+msgid "Stripe Multibanco"
+msgstr "Stripe Multibanco"
+
+#: includes/class-wc-stripe.php:537
+msgid "Stripe EPS"
+msgstr "Stripe EPS"
+
+#. translators: 1) amount (including currency symbol) 2) transaction id 3)
+#. refund message
+#: includes/class-wc-stripe-webhook-handler.php:799
+msgid "Refunded %1$s - Refund ID: %2$s - %3$s"
+msgstr "Zwrócone %1$s - ID zwrotu: %2$s - %3$s"
+
+#: includes/class-wc-gateway-stripe.php:623
+#: includes/class-wc-stripe-order-handler.php:202
+#: includes/class-wc-stripe-webhook-handler.php:351
+#: includes/payment-methods/class-wc-stripe-upe-payment-gateway.php:1881
+#: includes/payment-methods/class-wc-stripe-upe-payment-gateway.php:2539
+msgid "Sorry, we are unable to process your payment at this time. Please retry later."
+msgstr "Przepraszamy, nie jesteśmy w stanie zrealizować płatności w tym momencie. Proszę spróbować później."
+
+#: includes/class-wc-gateway-stripe.php:559
+msgid "Stripe Fee:"
+msgstr "Prowizja Stripe:"
+
+#: includes/class-wc-gateway-stripe.php:597
+msgid "Stripe Payout:"
+msgstr "Wypłata Stripe:"
+
+#: includes/class-wc-gateway-stripe.php:558
+msgid "This represents the fee Stripe collects for the transaction."
+msgstr "Prowizja Stripe za transakcję."
+
+#. translators: 1) last 4 digits of SEPA Direct Debit
+#: includes/compat/trait-wc-stripe-subscriptions.php:1061
+msgid "Via SEPA Direct Debit ending in %1$s"
+msgstr "Przez polecenie zapłaty SEPA kończące się na %1$s"
+
+#: includes/class-wc-gateway-stripe.php:596
+msgid "This represents the net total that will be credited to your Stripe bank account. This may be in the currency that is set in your Stripe account."
+msgstr "Jest to kwota netto, która zostanie zaksięgowana na twoim koncie bankowym Stripe. Może to być waluta, która jest ustawiona na twoim koncie Stripe."
+
+#: includes/payment-methods/class-wc-stripe-upe-payment-method-eps.php:19
+#: includes/payment-methods/class-wc-stripe-upe-payment-method-eps.php:22
+#: build/amazon-pay-settings.js:3 build/express-checkout-settings.js:3
+#: build/payment-gateways.js:3 build/upe-settings.js:3 build/upe-settings.js:18
+msgid "EPS"
+msgstr "EPS"
+
+#: includes/payment-methods/class-wc-stripe-upe-payment-method-multibanco.php:22
+#: includes/payment-methods/class-wc-stripe-upe-payment-method-multibanco.php:26
+#: build/amazon-pay-settings.js:3 build/express-checkout-settings.js:3
+#: build/payment-gateways.js:3 build/upe-settings.js:3 build/upe-settings.js:18
+msgid "Multibanco"
+msgstr "Multibanco"
+
+#. translators: 1) Opening anchor tag 2) closing anchor tag
+#: includes/class-wc-gateway-stripe.php:171
+msgid "If your billing address has been changed for saved payment methods, be sure to remove any %1$ssaved payment methods%2$s on file and re-add them."
+msgstr "Jeśli twój adres płatności został zmieniony dla zapisanych metod płatności, upewnij się, że usunięto wszystkie %1$szapisane metody płatności%2$s i ponownie je dodano."
+
+#: includes/abstracts/abstract-wc-stripe-payment-gateway.php:145
+#: includes/payment-methods/class-wc-stripe-upe-payment-method.php:786
+msgid "Save payment information to my account for future purchases."
+msgstr "Zapisz informacje o płatności do przyszłych zakupów."
+
+#. translators: 1) The reason type.
+#: includes/class-wc-stripe-webhook-handler.php:974
+msgid "The opened review for this order is now closed. Reason: (%s)"
+msgstr "Rewizja tego zamówienia została zamknięta. Powód: (%s)"
+
+#: includes/compat/trait-wc-stripe-subscriptions.php:738
+msgid "A \"Stripe Customer ID\" value is required."
+msgstr "Pole \"ID klienta Stripe\" jest wymagane."
+
+#: includes/compat/trait-wc-stripe-subscriptions.php:741
+msgid "Invalid customer ID. A valid \"Stripe Customer ID\" must begin with \"cus_\"."
+msgstr "Nieprawidłowy identyfikator klienta. \"ID klienta Stripe\" musi zaczynać się od \"cus_\"."
+
+#: includes/class-wc-gateway-stripe.php:296
+msgid "Card Code (CVC)"
+msgstr "Kod karty (CVC)"
+
+#: includes/class-wc-gateway-stripe.php:288 build/index.js:1
+msgid "Expiry Date"
+msgstr "Data wygaśnięcia"
+
+#: includes/class-wc-gateway-stripe.php:277 build/index.js:1
+msgid "Card Number"
+msgstr "Numer karty"
+
+#: includes/class-wc-stripe-helper.php:280 build/index.js:1
+msgid "The card number is incomplete."
+msgstr "Numer karty jest niekompletny."
+
+#: includes/class-wc-stripe-helper.php:282
+msgid "The card's expiration date is incomplete."
+msgstr "Data ważności karty jest niekompletna."
+
+#: includes/class-wc-stripe-helper.php:287
+msgid "The card's expiration year is in the past"
+msgstr "Rok ważności karty upłynął w przeszłości"
+
+#: includes/class-wc-stripe-helper.php:281
+msgid "The card's security code is incomplete."
+msgstr "Kod bezpieczeństwa karty jest niekompletny."
+
+#: includes/admin/stripe-settings.php:142
+msgid "Select the button type you would like to show."
+msgstr "Wybierz typ przycisku, który chcesz wyświetlić."
+
+#: includes/payment-methods/class-wc-stripe-express-checkout-element.php:572
+#: includes/payment-methods/class-wc-stripe-payment-request.php:943
+msgid "OR"
+msgstr "LUB"
+
+#: includes/payment-methods/class-wc-stripe-express-checkout-ajax-handler.php:319
+#: includes/payment-methods/class-wc-stripe-express-checkout-helper.php:371
+#: includes/payment-methods/class-wc-stripe-payment-request.php:440
+#: includes/payment-methods/class-wc-stripe-payment-request.php:1418
+msgid "Pending"
+msgstr "Oczekujące"
+
+#: includes/admin/class-wc-stripe-admin-notices.php:512
+msgid "Action failed. Please refresh the page and retry."
+msgstr "Nie powiodło się wybrane działanie. Proszę odświeżyć stronę i spróbować ponownie."
+
+#: includes/class-wc-stripe.php:539
+msgid "Stripe P24"
+msgstr "Stripe P24"
+
+#: includes/class-wc-stripe.php:534
+msgid "Stripe Bancontact"
+msgstr "Stripe Bancontact"
+
+#: includes/class-wc-stripe.php:540
+msgid "Stripe Alipay"
+msgstr "Stripe Alipay"
+
+#: includes/class-wc-stripe-webhook-handler.php:773
+msgid "Refunded via Stripe Dashboard"
+msgstr "Zwrócone przez panel Stripe"
+
+#: includes/class-wc-gateway-stripe.php:269
+msgid "Credit or debit card"
+msgstr "Karta kredytowa lub debetowa"
+
+#: includes/admin/stripe-settings.php:167
+msgid "Button Height"
+msgstr "Wysokość przycisku"
+
+#: includes/admin/stripe-settings.php:166
+msgid "Payment Request Button Height"
+msgstr "Wysokość przycisku płatności"
+
+#: includes/admin/stripe-settings.php:162
+msgid "Light-Outline"
+msgstr "Jasny z obrysem"
+
+#: includes/admin/stripe-settings.php:160 build/express-checkout-settings.js:4
+msgid "Dark"
+msgstr "Ciemny"
+
+#: includes/admin/stripe-settings.php:154
+msgid "Button Theme"
+msgstr "Motyw przycisku"
+
+#: includes/admin/stripe-settings.php:153
+msgid "Payment Request Button Theme"
+msgstr "Motyw przycisku płatności"
+
+#: includes/admin/stripe-settings.php:147 build/express-checkout-settings.js:4
+msgid "Buy"
+msgstr "Kup"
+
+#: includes/admin/stripe-settings.php:140
+msgid "Button Type"
+msgstr "Typ przycisku"
+
+#: includes/admin/stripe-settings.php:139
+msgid "Payment Request Button Type"
+msgstr "Typ przycisku płatności"
+
+#: includes/admin/stripe-settings.php:123
+msgid "Payment Request Buttons"
+msgstr "Przyciski płatności"
+
+#: includes/admin/stripe-settings.php:96
+msgid "Choose the style you want to show for your credit card form. When unchecked, the credit card form will display separate credit card number field, expiry date field and cvc field."
+msgstr "Wybierz sposób wyświetlania formularza karty płatniczej. Po odznaczeniu tego pola, formularz karty kredytowej wyświetli oddzielne pole numeru karty kredytowej, pole daty ważności i pole cvc."
+
+#: includes/admin/stripe-settings.php:94
+msgid "Inline Credit Card Form"
+msgstr "Zintegrowany formularz karty płatniczej"
+
+#: includes/payment-methods/class-wc-stripe-upe-payment-method-bancontact.php:24
+#: build/amazon-pay-settings.js:3 build/express-checkout-settings.js:3
+#: build/payment-gateways.js:3 build/upe-settings.js:3 build/upe-settings.js:18
+msgid "Bancontact"
+msgstr "Bancontact"
+
+#: includes/payment-methods/class-wc-stripe-upe-payment-method-sepa.php:22
+#: includes/payment-methods/class-wc-stripe-upe-payment-method-sepa.php:25
+#: build/upe-settings.js:18
+msgid "SEPA Direct Debit"
+msgstr "Polecenie zapłaty SEPA"
+
+#: includes/payment-tokens/class-wc-stripe-payment-tokens.php:418
+msgid "SEPA IBAN"
+msgstr "SEPA IBAN"
+
+#. translators: last 4 digits of IBAN account
+#: includes/payment-tokens/class-wc-stripe-sepa-payment-token.php:51
+msgid "SEPA IBAN ending in %s"
+msgstr "SEPA IBAN kończący się na %s"
+
+#: includes/class-wc-stripe.php:541
+msgid "Stripe SEPA Direct Debit"
+msgstr "Stripe Polecenie zapłaty SEPA"
+
+#. translators: error message
+#: includes/class-wc-stripe-order-handler.php:234
+msgid "Stripe payment failed: %s"
+msgstr "Płatność Stripe nie powiodła się: %s"
+
+#: includes/class-wc-stripe-webhook-handler.php:699
+msgid "This payment was cancelled."
+msgstr "Ta płatność została anulowana."
+
+#: includes/admin/stripe-settings.php:169
+msgid "Enter the height you would like the button to be in pixels. Width will always be 100%."
+msgstr "Wprowadź wysokość przycisku w pikselach. Szerokość zawsze będzie na 100%."
+
+#: includes/abstracts/abstract-wc-stripe-payment-gateway.php:2279
+msgid "Please enter your IBAN account name."
+msgstr "Proszę wpisać nazwę konta IBAN."
+
+#: includes/abstracts/abstract-wc-stripe-payment-gateway.php:2280
+msgid "Please enter your IBAN account number."
+msgstr "Proszę wpisać numer konta IBAN."
+
+#: includes/class-wc-stripe-webhook-handler.php:658
+msgid "This payment failed to clear."
+msgstr "Ta płatność nie została rozliczona."
+
+#: includes/class-wc-stripe-customer.php:727
+msgid "Unable to add payment source."
+msgstr "Nie można dodać źródła płatności."
+
+#: includes/class-wc-stripe-helper.php:295
+#: includes/class-wc-stripe-order-handler.php:139 build/index.js:1
+msgid "Unable to process this payment, please try again or use alternative method."
+msgstr "Nie można przetworzyć tej płatności, spróbuj ponownie lub użyj alternatywnej metody."
+
+#: includes/admin/stripe-settings.php:148 build/express-checkout-settings.js:4
+msgid "Donate"
+msgstr "Złóż datek"
+
+#: includes/admin/class-wc-stripe-privacy.php:48
+#: includes/compat/trait-wc-stripe-subscriptions.php:1031
+#: includes/compat/trait-wc-stripe-subscriptions.php:1046
+#: includes/compat/trait-wc-stripe-subscriptions.php:1056
+#: includes/compat/trait-wc-stripe-subscriptions.php:1096
+msgid "N/A"
+msgstr "Brak danych"
+
+#: includes/admin/stripe-settings.php:161 build/express-checkout-settings.js:4
+msgid "Light"
+msgstr "Jasny"
+
+#: includes/admin/stripe-settings.php:75
+msgid "Webhook Endpoints"
+msgstr "Punkty końcowe webhooków"
+
+#: includes/payment-methods/class-wc-stripe-upe-payment-method-alipay.php:19
+#: includes/payment-methods/class-wc-stripe-upe-payment-method-alipay.php:34
+#: build/amazon-pay-settings.js:3 build/express-checkout-settings.js:3
+#: build/payment-gateways.js:3 build/upe-settings.js:3 build/upe-settings.js:18
+msgid "Alipay"
+msgstr "Alipay"
+
+#: includes/abstracts/abstract-wc-stripe-payment-gateway.php:579
+#: includes/abstracts/abstract-wc-stripe-payment-gateway.php:661
+#: includes/abstracts/abstract-wc-stripe-payment-gateway.php:1094
+msgid "Payment processing failed. Please retry."
+msgstr "Przetwarzanie płatności nie powiodło się. Proszę, spróbuj ponownie."
+
+#. translators: transaction id
+#: includes/abstracts/abstract-wc-stripe-payment-gateway.php:630
+#: includes/class-wc-stripe-webhook-handler.php:1114
+msgid "Stripe charge awaiting payment: %s."
+msgstr "Oczekująca płatność Stripe: %s."
+
+#: includes/abstracts/abstract-wc-stripe-payment-gateway.php:519
+msgid "customer_name"
+msgstr "customer_name"
+
+#: includes/admin/stripe-settings.php:101
+msgid "Statement Descriptor"
+msgstr "Opis transakcji"
+
+#: includes/payment-methods/class-wc-stripe-payment-request.php:1721
+msgid "Empty cart"
+msgstr "Pusty koszyk"
+
+#: includes/payment-methods/class-wc-stripe-express-checkout-element.php:306
+#: includes/payment-methods/class-wc-stripe-express-checkout-helper.php:1568
+#: includes/payment-methods/class-wc-stripe-payment-request.php:1927
+#: build/express-checkout.js:1
+msgid "Discount"
+msgstr "Rabat"
+
+#: includes/payment-methods/class-wc-stripe-express-checkout-ajax-handler.php:312
+#: includes/payment-methods/class-wc-stripe-express-checkout-helper.php:279
+#: includes/payment-methods/class-wc-stripe-express-checkout-helper.php:1560
+#: includes/payment-methods/class-wc-stripe-payment-request.php:433
+#: includes/payment-methods/class-wc-stripe-payment-request.php:1411
+#: includes/payment-methods/class-wc-stripe-payment-request.php:1920
+#: build/express-checkout.js:1
+msgid "Shipping"
+msgstr "Wysyłka"
+
+#: includes/payment-methods/class-wc-stripe-express-checkout-ajax-handler.php:304
+#: includes/payment-methods/class-wc-stripe-express-checkout-element.php:299
+#: includes/payment-methods/class-wc-stripe-express-checkout-helper.php:271
+#: includes/payment-methods/class-wc-stripe-express-checkout-helper.php:1552
+#: includes/payment-methods/class-wc-stripe-payment-request.php:425
+#: includes/payment-methods/class-wc-stripe-payment-request.php:1403
+#: includes/payment-methods/class-wc-stripe-payment-request.php:1913
+#: build/express-checkout.js:1
+msgid "Tax"
+msgstr "Podatek"
+
+#. translators: 1) blog name 2) order number
+#: includes/abstracts/abstract-wc-stripe-payment-gateway.php:486
+#: includes/class-wc-stripe-intent-controller.php:502
+#: includes/class-wc-stripe-intent-controller.php:848
+#: includes/payment-methods/class-wc-stripe-upe-payment-gateway.php:951
+msgid "%1$s - Order %2$s"
+msgstr "%1$s - Zamówienie %2$s"
+
+#: includes/admin/stripe-settings.php:134
+msgid "If enabled, users will be able to pay using Apple Pay or Chrome Payment Request if supported by the browser."
+msgstr "Jeśli opcja ta jest włączona, użytkownicy będą mogli płacić za pomocą płatności Apple Pay lub Chrome Payment Request, jeśli są obsługiwane przez przeglądarkę."
+
+#. translators: 1) amount (including currency symbol) 2) transaction id 3)
+#. refund message
+#: includes/abstracts/abstract-wc-stripe-payment-gateway.php:1316
+msgid "Refunded %1$s - Refund ID: %2$s - Reason: %3$s"
+msgstr "Zwrócone %1$s - ID zwrotu: %2$s - Powód: %3$s"
+
+#: includes/admin/stripe-settings.php:156
+msgid "Select the button theme you would like to show."
+msgstr "Wybierz motyw przycisku, który chcesz pokazać."
+
+#: includes/payment-methods/class-wc-stripe-express-checkout-helper.php:1013
+#: includes/payment-methods/class-wc-stripe-express-checkout-helper.php:1031
+#: includes/payment-methods/class-wc-stripe-payment-request.php:1240
+#: includes/payment-methods/class-wc-stripe-payment-request.php:1259
+msgid "Unable to find shipping method for address."
+msgstr "Nie można znaleźć sposobu dostawy dla tego adresu."
+
+#. translators: Do not translate the [option] placeholder
+#: includes/payment-methods/class-wc-stripe-express-checkout-element.php:219
+#: includes/payment-methods/class-wc-stripe-payment-request.php:820
+msgid "Unknown shipping option \"[option]\"."
+msgstr "Nieznana metoda wysyłki \"[option]\"."
+
+#: includes/abstracts/abstract-wc-stripe-payment-gateway.php:520
+msgid "customer_email"
+msgstr "customer_email"
+
+#: includes/admin/class-wc-stripe-admin-notices.php:516
+msgid "Cheatin&#8217; huh?"
+msgstr "Oszukujemy, co?"
+
+#: includes/class-wc-stripe-helper.php:290 build/index.js:1
+msgid "An error occurred while processing the card."
+msgstr "Podczas przetwarzania karty wystąpił błąd."
+
+#: includes/payment-methods/class-wc-stripe-express-checkout-element.php:217
+#: includes/payment-methods/class-wc-stripe-payment-request.php:818
+msgid "Sorry, we're not accepting prepaid cards at this time."
+msgstr "Przepraszamy, w tym momencie nie przyjmujemy kart przedpłaconych."
+
+#: includes/class-wc-stripe-helper.php:279 build/index.js:1
+msgid "The card number is incorrect."
+msgstr "Numer karty jest nieprawidłowy."
+
+#: includes/class-wc-stripe-helper.php:275 build/index.js:1
+msgid "The card number is not a valid credit card number."
+msgstr "Numer karty nie jest prawidłowym numerem karty kredytowej."
+
+#: includes/class-wc-stripe-helper.php:288 build/index.js:1
+msgid "The card was declined."
+msgstr "Karta została odrzucona."
+
+#: includes/class-wc-stripe-helper.php:276
+msgid "The card's expiration month is invalid."
+msgstr "Miesiąc ważności karty jest nieprawidłowy."
+
+#: includes/class-wc-stripe-helper.php:277
+msgid "The card's expiration year is invalid."
+msgstr "Rok ważności karty jest nieprawidłowy."
+
+#: includes/class-wc-stripe-helper.php:284
+msgid "The card's security code is incorrect."
+msgstr "Kod bezpieczeństwa karty jest nieprawidłowy."
+
+#: includes/class-wc-stripe-helper.php:278
+msgid "The card's security code is invalid."
+msgstr "Kod bezpieczeństwa karty jest nieprawidłowy."
+
+#: includes/class-wc-stripe-helper.php:285
+msgid "The card's zip code failed validation."
+msgstr "Kod pocztowy karty nie przeszedł walidacji."
+
+#: includes/class-wc-stripe-helper.php:289 build/index.js:1
+msgid "There is no card on a customer that is being charged."
+msgstr "Klient, dla którego realizowana jest płatność nie posiada karty."
+
+#. translators: 1) int version 2) int version
+#: includes/admin/class-wc-stripe-admin-notices.php:220
+msgid "WooCommerce Stripe - The minimum PHP version required for this plugin is %1$s. You are running %2$s."
+msgstr "WooCommerce Stripe - Minimalna wersja PHP wymagana dla tej wtyczki to %1$s. Posiadasz %2$s."
+
+#: includes/admin/class-wc-stripe-admin-notices.php:238
+msgid "WooCommerce Stripe - cURL is not installed."
+msgstr "WooCommerce Stripe - cURL nie jest zainstalowany."
+
+#: includes/class-wc-stripe-helper.php:283 build/index.js:1
+msgid "The card has expired."
+msgstr "Karta straciła ważność."
+
+#: includes/compat/trait-wc-stripe-pre-orders.php:213
+msgid "Unable to store payment details. Please try again."
+msgstr "Nie można zapisać szczegółów płatności. Spróbuj ponownie."
+
+#. translators: error message
+#: includes/compat/trait-wc-stripe-pre-orders.php:295
+msgid "Stripe Transaction Failed (%s)"
+msgstr "Niepowodzenie transakcji Stripe (%s)"
+
+#: includes/abstracts/abstract-wc-stripe-payment-gateway.php:2243
+msgid "Please accept the terms and conditions first"
+msgstr "Najpierw zaakceptuj regulamin"
+
+#: includes/abstracts/abstract-wc-stripe-payment-gateway.php:975
+msgid "Invalid payment method. Please input a new card number."
+msgstr "Nieprawidłowa metoda płatności. Wprowadź nowy numer karty."
+
+#: includes/class-wc-stripe-order-handler.php:181
+#: includes/class-wc-stripe-webhook-handler.php:329
+msgid "This card is no longer available and has been removed."
+msgstr "Karta nie jest już dostępna i została usunięta."
+
+#: includes/admin/stripe-settings.php:21
+msgid "Title"
+msgstr "Tytuł"
+
+#: includes/admin/stripe-settings.php:23
+msgid "This controls the title which the user sees during checkout."
+msgstr "Tytuł, który widzi użytkownik podczas składania zamówienia."
+
+#: includes/admin/stripe-settings.php:28
+#: includes/payment-methods/class-wc-stripe-upe-payment-gateway.php:2153
+#: build/upe-settings.js:20
+msgid "Description"
+msgstr "Opis"
+
+#: includes/admin/stripe-settings.php:30
+msgid "This controls the description which the user sees during checkout."
+msgstr "Opis, który użytkownik widzi podczas składania zamówienia."
+
+#: includes/admin/stripe-settings.php:40
+msgid "Enable Test Mode"
+msgstr "Włącz tryb testowy"
+
+#. Plugin Name of the plugin
+#: woocommerce-gateway-stripe.php
+msgid "WooCommerce Stripe Gateway"
+msgstr "WooCommerce Stripe Gateway"
+
+#. Plugin URI of the plugin
+#: woocommerce-gateway-stripe.php
+msgid "https://wordpress.org/plugins/woocommerce-gateway-stripe/"
+msgstr "https://wordpress.org/plugins/woocommerce-gateway-stripe/"
+
+#: includes/admin/stripe-settings.php:24
+msgid "Credit Card (Stripe)"
+msgstr "Karta płatnicza (Stripe)"
+
+#: includes/admin/stripe-settings.php:15 build/upe-settings.js:6
+msgid "Enable Stripe"
+msgstr "Włącz Stripe"
+
+#: includes/class-wc-stripe.php:472
+msgid "Support"
+msgstr "Wsparcie"
+
+#: includes/class-wc-stripe.php:455 build/amazon-pay-settings.js:4
+#: build/express-checkout-settings.js:4 build/upe-settings.js:18
+msgid "Settings"
+msgstr "Ustawienia"
+
+#: includes/admin/stripe-settings.php:247 build/upe-settings.js:4
+msgid "Log debug messages"
+msgstr "Zapisuj komunikaty debug"
+
+#: includes/admin/stripe-settings.php:246
+msgid "Logging"
+msgstr "Logowanie"
+
+#: includes/admin/stripe-settings.php:118
+msgid "Whether or not to immediately capture the charge. When unchecked, the charge issues an authorization and will need to be captured later. Uncaptured charges expire in 7 days."
+msgstr "Czy natychmiast przechwycić płatność. Kiedy nie jest zaznaczone, płatność zostanie autoryzowana i będzie musiała zostać przechwycona później. Nieprzechwycone płatności wygasają po 7 dniach."
+
+#: includes/admin/stripe-settings.php:116
+msgid "Capture charge immediately"
+msgstr "Natychmiast przechwyć płatność"
+
+#: includes/admin/stripe-settings.php:47
+msgid "Test Publishable Key"
+msgstr "Testowy klucz publiczny"
+
+#: includes/admin/stripe-settings.php:54
+msgid "Test Secret Key"
+msgstr "Testowy klucz prywatny"
+
+#: includes/admin/stripe-settings.php:61
+msgid "Live Publishable Key"
+msgstr "Produkcyjny klucz publiczny"
+
+#: includes/admin/stripe-settings.php:68
+msgid "Live Secret Key"
+msgstr "Produkcyjny klucz prywatny"
+
+#: includes/admin/stripe-settings.php:39 build/upe-settings.js:6
+msgid "Test mode"
+msgstr "Tryb testowy"
+
+#: includes/admin/stripe-settings.php:31
+msgid "Pay with your credit card via Stripe."
+msgstr "Zapłać kartą płatniczą przez Stripe."
+
+#. Author of the plugin
+#: woocommerce-gateway-stripe.php includes/admin/class-wc-stripe-privacy.php:21
+#: includes/class-wc-gateway-stripe.php:85
+#: includes/payment-methods/class-wc-stripe-upe-payment-gateway.php:189
+msgid "Stripe"
+msgstr "Stripe"
+
+#. translators: 1) card brand 2) last 4 digits
+#: includes/compat/trait-wc-stripe-subscriptions.php:1045
+#: includes/compat/trait-wc-stripe-subscriptions.php:1055
+msgid "Via %1$s card ending in %2$s"
+msgstr "Poprzez kartę %1$s kończącą się na %2$s"
+
+#: includes/compat/trait-wc-stripe-subscriptions.php:398
+msgid "Customer not found"
+msgstr "Klient nie został znaleziony"
+
+#. translators: 1) amount (including currency symbol)
+#: includes/abstracts/abstract-wc-stripe-payment-gateway.php:408
+#: includes/class-wc-stripe-order-helper.php:1079
+msgid "Sorry, the minimum allowed order total is %1$s to use this payment method."
+msgstr "Przepraszamy, minimalna wartość zamówienia dla tej metody płatności to %1$s."
+
+#. translators: link to Stripe testing page
+#: includes/class-wc-gateway-stripe.php:230
+msgid "TEST MODE ENABLED. In test mode, you can use the card number 4242424242424242 with any CVC and a valid expiration date or check the <a href=\"%s\" target=\"_blank\">Testing Stripe documentation</a> for more card numbers."
+msgstr "WŁĄCZONO TRYB TESTOWY. W trybie testowym możesz użyć numeru karty 4242424242424242 z dowolnym kodem CVC oraz prawidłową datą ważności. Więcej numerów kart zawiera część dokumentacji poświęcona <a href=\"%s\" target=\"_blank\">testowaniu Stripe</a>."
+
+#: includes/abstracts/abstract-wc-stripe-payment-gateway.php:2244
+msgid "Please fill in required checkout fields first"
+msgstr "Wypełnij wymagane pola zamówienia"
+
+#: includes/admin/stripe-settings.php:42
+msgid "Place the payment gateway in test mode using test API keys."
+msgstr "Ustaw bramkę płatności w trybie testowym przy użyciu kluczy interfejsu API."
+
+#: includes/admin/stripe-settings.php:249
+msgid "Save debug messages to the WooCommerce System Status log."
+msgstr "Zapisuj komunikaty debugowania w logach statusu WooCommerce."
+
+#. translators: error message
+#: includes/class-wc-stripe-order-handler.php:308
+#: includes/class-wc-stripe-order-handler.php:323
+#: includes/class-wc-stripe-order-handler.php:339
+#: includes/class-wc-stripe-order-handler.php:354
+msgid "Unable to capture charge! %s"
+msgstr "Nie można przechwycić płatności! %s"
+
+#. translators: transaction id
+#: includes/abstracts/abstract-wc-stripe-payment-gateway.php:652
+#: includes/class-wc-stripe-order-handler.php:365
+msgid "Stripe charge complete (Charge ID: %s)"
+msgstr "Płatność Stripe została zakończona (identyfikator obciążenia: %s)"
+
+#: includes/class-wc-stripe.php:471
+msgid "Docs"
+msgstr "Dokumentacja"
+
+#: includes/admin/stripe-settings.php:14
+msgid "Enable/Disable"
+msgstr "Włączyć/wyłączyć"
+
+#: includes/admin/stripe-settings.php:115
+msgid "Capture"
+msgstr "Przechwyć"
+
+#. translators: 1) link to Stripe register page 2) link to Stripe api keys page
+#: includes/class-wc-gateway-stripe.php:87
+msgid "Stripe works by adding payment fields on the checkout and then sending the details to Stripe for verification."
+msgstr "Stripe dodaje pola karty kredytowej w zamówieniu i wysyła dane do firmy Stripe w celu ich weryfikacji."

@@ -1,0 +1,26 @@
+/*
+ Theme Name:   Woodmart Child
+ Description:  Woodmart Child Theme
+ Author:       XTemos
+ Author URI:   http://xtemos.com
+ Template:     woodmart
+ Version:      1.0.0
+ Text Domain:  woodmart
+*/
+
+.easypack_show_geowidget {
+    max-width: 100% !important;
+}
+
+.easypack-shipping-method-logo {
+    display: none;
+}
+
+.lab-sticky-pay-btn.wd-sticky-btn-shown {
+    bottom: 97px !important;
+}
+@media screen and (max-width: 768px) {
+    .checkout .e-con-inner {
+        flex-direction: column-reverse !important;
+    }
+}

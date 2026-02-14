@@ -1,0 +1,25 @@
+#slider-444 .wd-slide {
+	min-height: 380px;
+}
+#slider-444 .wd-slider-arrows {
+	--wd-arrow-size: 40px;
+	--wd-arrow-icon-size: 16px;
+	--wd-arrow-offset-h: -60px;
+	--wd-arrow-radius: 10px;
+	--wd-arrow-shadow: 0px 0px 0px 0px rgba(255,255,255,0);
+}
+
+@media (max-width: 1024px) {
+	#slider-444 .wd-slide {
+		min-height: 380px;
+	}
+	#slider-444 .wd-slider-arrows {
+		--wd-arrow-offset-h: 100px;
+	}
+}
+
+@media (max-width: 768px) {
+	#slider-444 .wd-slide {
+		min-height: 380px;
+	}
+}
