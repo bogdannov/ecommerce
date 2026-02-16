@@ -191,7 +191,7 @@ add_action('wp_enqueue_scripts', function() {
         'fb-pixel-events', 
         get_stylesheet_directory_uri() . '/js/fb-pixel.js', 
         array(), 
-        '2.1', // Сбрасываем кэш еще раз
+        '2.2', // Сбрасываем кэш еще раз
         true 
     );
 
@@ -308,7 +308,7 @@ function send_fb_capi_purchase($order_id, $posted_data, $order) {
                 'contents' => $contents,
             ),
             'action_source' => 'website',
-            'event_source_url' => wc_get_checkout_order_received_url($order_id),
+            'event_source_url' => $order->get_checkout_order_received_url(),
         )
     );
 
