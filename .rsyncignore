@@ -1,5 +1,7 @@
 .git/
 .gitignore
+.github/
+.claude/
 .idea/
 .vscode/
 .DS_Store
@@ -20,5 +22,9 @@ vendor/
 wp-content/cache/
 wp-content/litespeed/
 .env
+.env.example
 .rsyncignore
 deploy.sh
+DEPLOYMENT.md
+README.md
+*.md
