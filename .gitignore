@@ -38,3 +38,6 @@ yarn-error.log
 *.sass-cache/
 *.css.map
 *.js.map
+
+# Deployment configuration
+.env

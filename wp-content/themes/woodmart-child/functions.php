@@ -264,3 +264,63 @@ add_action('woocommerce_thankyou', function($order_id) {
         error_log('FB_PIXEL_PURCHASE_ERROR: ' . $e->getMessage());
     }
 });
+
+/**
+ * Facebook Conversions API (CAPI) - Purchase Event
+ */
+add_action('woocommerce_checkout_order_processed', 'send_fb_capi_purchase', 10, 3);
+
+function send_fb_capi_purchase($order_id, $posted_data, $order) {
+    $access_token = 'EAAst21IXdAUBQlxZCq2oF7CViif3ZClMD8m8TDDkfMMOfNZB5qLUogG3naHPIcAgFDSRGgtonfVy3h9twuoBlNAJ4rz3ZBNqdloYd49f1KMSp0rbkfkmIpUNyZBQdo8zF8JVWVQfALHC7W5QFhSsi5D5iHgNmGthb74QMIF974IclTTFTvkHCl2AI8ZCZAPhILl2wZDZD'; // Вставь сюда токен
+    $pixel_id     = '4311413652473070';
+    $test_code    = 'TEST2983'; // Вставь тестовый код или удали строку ниже, если не тестируешь
+
+    if (!$order) return;
+
+    $user_data = array(
+        'em' => [hash('sha256', strtolower(trim($order->get_billing_email())))],
+        'ph' => [hash('sha256', preg_replace('/\D/', '', $order->get_billing_phone()))],
+        'client_ip_address' => $_SERVER['REMOTE_ADDR'],
+        'client_user_agent' => $_SERVER['HTTP_USER_AGENT'],
+        'fbc' => $_COOKIE['_fbc'] ?? null,
+        'fbp' => $_COOKIE['_fbp'] ?? null,
+    );
+
+    $contents = [];
+    foreach ($order->get_items() as $item) {
+        $contents[] = [
+            'id' => (string)$item->get_product_id(),
+            'quantity' => (int)$item->get_quantity(),
+        ];
+    }
+
+    $data = array(
+        array(
+            'event_name' => 'Purchase',
+            'event_time' => time(),
+            'event_id'   => (string)$order_id, // ДОЛЖЕН СОВПАДАТЬ С БРАУЗЕРНЫМ ДЛЯ ДЕДУПЛИКАЦИИ
+            'user_data'  => array_filter($user_data),
+            'custom_data' => array(
+                'value'    => (float)$order->get_total(),
+                'currency' => $order->get_currency(),
+                'content_ids' => array_map('strval', array_values(wp_list_pluck($order->get_items(), 'product_id'))),
+                'content_type' => 'product',
+                'contents' => $contents,
+            ),
+            'action_source' => 'website',
+            'event_source_url' => wc_get_checkout_order_received_url($order_id),
+        )
+    );
+
+    $body = array(
+        'data' => $data,
+        'test_event_code' => $test_code, // Удали эту строку, когда закончишь тесты
+    );
+
+    wp_remote_post("https://graph.facebook.com/v18.0/{$pixel_id}/events?access_token={$access_token}", array(
+        'body'        => json_encode($body),
+        'method'      => 'POST',
+        'headers'     => array('Content-Type' => 'application/json'),
+        'timeout'     => 15,
+    ));
+}
