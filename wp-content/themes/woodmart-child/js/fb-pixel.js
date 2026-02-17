@@ -1,3 +1,8 @@
+function setFbEventCookie(name, value, seconds) {
+    const expires = new Date(Date.now() + seconds * 1000).toUTCString();
+    document.cookie = name + '=' + encodeURIComponent(value) + '; expires=' + expires + '; path=/; SameSite=Lax';
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     try {
         // Check for purchase data first, then localized data
@@ -32,11 +37,25 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
 
                 if (pId) {
-                    fbq('track', 'AddToCart', {
+                    const productPrice = btn.getAttribute('data-product_price') || null;
+
+                    const eventId = pId + '_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+
+                    setFbEventCookie('fb_atc_event_id', eventId, 10);
+
+                    const params = {
                         content_ids: [pId.toString()],
                         content_type: 'product'
-                    });
-                    console.log('FB_DEBUG: AddToCart fired for ID:', pId);
+                    };
+
+                    if (productPrice) {
+                        params.value = parseFloat(productPrice);
+                        params.currency = 'PLN';
+                    }
+
+                    fbq('track', 'AddToCart', params, { eventID: eventId });
+
+                    console.log('FB_DEBUG: AddToCart fired for ID:', pId, 'EventID:', eventId);
                 } else {
                     console.warn('FB_DEBUG: Button clicked, but Product ID not found');
                 }

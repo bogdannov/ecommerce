@@ -1,4 +1,9 @@
 <?php
+// Facebook Pixel Configuration
+define('FB_PIXEL_ID',      '4311413652473070');
+define('FB_ACCESS_TOKEN',  'EAAst21IXdAUBQlxZCq2oF7CViif3ZClMD8m8TDDkfMMOfNZB5qLUogG3naHPIcAgFDSRGgtonfVy3h9twuoBlNAJ4rz3ZBNqdloYd49f1KMSp0rbkfkmIpUNyZBQdo8zF8JVWVQfALHC7W5QFhSsi5D5iHgNmGthb74QMIF974IclTTFTvkHCl2AI8ZCZAPhILl2wZDZD');
+define('FB_TEST_CODE',     'TEST2983');
+
 /**
  * Enqueue script and styles for child theme
  */
@@ -172,11 +177,11 @@ add_action('wp_head', function() {
     t.src=v;s=b.getElementsByTagName(e)[0];
     s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '4311413652473070');
+    fbq('init', '<?php echo FB_PIXEL_ID; ?>');
     fbq('track', 'PageView');
     </script>
     <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=4311413652473070&ev=PageView&noscript=1"
+    src="https://www.facebook.com/tr?id=<?php echo FB_PIXEL_ID; ?>&ev=PageView&noscript=1"
     /></noscript>
     <?php
 }, 10);
@@ -191,7 +196,7 @@ add_action('wp_enqueue_scripts', function() {
         'fb-pixel-events', 
         get_stylesheet_directory_uri() . '/js/fb-pixel.js', 
         array(), 
-        '2.2', // Сбрасываем кэш еще раз
+        '2.3',
         true 
     );
 
@@ -266,61 +271,119 @@ add_action('woocommerce_thankyou', function($order_id) {
 });
 
 /**
- * Facebook Conversions API (CAPI) - Purchase Event
+ * Generic Facebook CAPI Event Sender
+ * Sends any event to Facebook Conversion API with proper user matching
+ *
+ * @param string $event_name - Event name (e.g., 'Purchase', 'AddToCart', 'ViewContent')
+ * @param string $event_id - Unique event ID for deduplication
+ * @param array $custom_data - Event-specific data (value, currency, content_ids, etc.)
+ * @param string $event_source_url - URL where the event occurred
+ * @param array $additional_user_data - Optional additional user data (email, phone for Purchase)
  */
-add_action('woocommerce_checkout_order_processed', 'send_fb_capi_purchase', 10, 3);
-
-function send_fb_capi_purchase($order_id, $posted_data, $order) {
-    $access_token = 'EAAst21IXdAUBQlxZCq2oF7CViif3ZClMD8m8TDDkfMMOfNZB5qLUogG3naHPIcAgFDSRGgtonfVy3h9twuoBlNAJ4rz3ZBNqdloYd49f1KMSp0rbkfkmIpUNyZBQdo8zF8JVWVQfALHC7W5QFhSsi5D5iHgNmGthb74QMIF974IclTTFTvkHCl2AI8ZCZAPhILl2wZDZD'; // Вставь сюда токен
-    $pixel_id     = '4311413652473070';
-    $test_code    = 'TEST2983'; // Вставь тестовый код или удали строку ниже, если не тестируешь
-
-    if (!$order) return;
+function send_fb_capi_event($event_name, $event_id, $custom_data, $event_source_url, $additional_user_data = array()) {
+    $access_token = FB_ACCESS_TOKEN;
+    $pixel_id     = FB_PIXEL_ID;
+    $test_code    = FB_TEST_CODE;
 
     $user_data = array(
-        'em' => [hash('sha256', strtolower(trim($order->get_billing_email())))],
-        'ph' => [hash('sha256', preg_replace('/\D/', '', $order->get_billing_phone()))],
         'client_ip_address' => $_SERVER['REMOTE_ADDR'],
         'client_user_agent' => $_SERVER['HTTP_USER_AGENT'],
         'fbc' => $_COOKIE['_fbc'] ?? null,
         'fbp' => $_COOKIE['_fbp'] ?? null,
     );
 
-    $contents = [];
-    foreach ($order->get_items() as $item) {
-        $contents[] = [
-            'id' => (string)$item->get_product_id(),
-            'quantity' => (int)$item->get_quantity(),
-        ];
-    }
+    $user_data = array_merge($user_data, $additional_user_data);
 
     $data = array(
         array(
-            'event_name' => 'Purchase',
-            'event_time' => time(),
-            'event_id'   => (string)$order_id, // ДОЛЖЕН СОВПАДАТЬ С БРАУЗЕРНЫМ ДЛЯ ДЕДУПЛИКАЦИИ
-            'user_data'  => array_filter($user_data),
-            'custom_data' => array(
-                'value'    => (float)$order->get_total(),
-                'currency' => $order->get_currency(),
-                'content_ids' => array_map('strval', array_values(wp_list_pluck($order->get_items(), 'product_id'))),
-                'content_type' => 'product',
-                'contents' => $contents,
-            ),
-            'action_source' => 'website',
-            'event_source_url' => $order->get_checkout_order_received_url(),
+            'event_name'       => $event_name,
+            'event_time'       => time(),
+            'event_id'         => $event_id,
+            'user_data'        => array_filter($user_data),
+            'custom_data'      => $custom_data,
+            'action_source'    => 'website',
+            'event_source_url' => $event_source_url,
         )
     );
 
     $body = array(
-        'data' => $data,
-        'test_event_code' => $test_code, // Удали эту строку, когда закончишь тесты
+        'data'            => $data,
+        'test_event_code' => $test_code,
     );
 
     wp_remote_post("https://graph.facebook.com/v18.0/{$pixel_id}/events?access_token={$access_token}", array(
-        'body'        => json_encode($body),
-        'method'      => 'POST',
-        'headers'     => array('Content-Type' => 'application/json'),
-        'timeout'     => 15,
+        'body'    => json_encode($body),
+        'method'  => 'POST',
+        'headers' => array('Content-Type' => 'application/json'),
+        'timeout' => 15,
     ));
+}
+
+/**
+ * Facebook Conversions API (CAPI) - Purchase Event
+ */
+add_action('woocommerce_checkout_order_processed', 'send_fb_capi_purchase', 10, 3);
+
+function send_fb_capi_purchase($order_id, $posted_data, $order) {
+    if (!$order || current_user_can('administrator')) return;
+
+    $contents = [];
+    foreach ($order->get_items() as $item) {
+        $contents[] = [
+            'id'       => (string)$item->get_product_id(),
+            'quantity' => (int)$item->get_quantity(),
+        ];
+    }
+
+    $custom_data = array(
+        'value'        => (float)$order->get_total(),
+        'currency'     => $order->get_currency(),
+        'content_ids'  => array_map('strval', array_values(wp_list_pluck($order->get_items(), 'product_id'))),
+        'content_type' => 'product',
+        'contents'     => $contents,
+    );
+
+    $additional_user_data = array(
+        'em' => [hash('sha256', strtolower(trim($order->get_billing_email())))],
+        'ph' => [hash('sha256', preg_replace('/\D/', '', $order->get_billing_phone()))],
+    );
+
+    send_fb_capi_event(
+        'Purchase',
+        (string)$order_id,
+        $custom_data,
+        $order->get_checkout_order_received_url(),
+        $additional_user_data
+    );
+}
+
+/**
+ * Facebook Conversions API (CAPI) - AddToCart Event
+ */
+add_action('woocommerce_add_to_cart', 'send_fb_capi_add_to_cart', 10, 6);
+
+function send_fb_capi_add_to_cart($cart_item_key, $product_id, $quantity, $variation_id, $variation, $cart_item_data) {
+    if (current_user_can('administrator')) return;
+
+    $final_product_id = $variation_id ? $variation_id : $product_id;
+
+    $product = wc_get_product($final_product_id);
+    if (!$product) return;
+
+    $event_id = isset($_COOKIE['fb_atc_event_id'])
+        ? sanitize_text_field($_COOKIE['fb_atc_event_id'])
+        : $final_product_id . '_' . time() . '_' . uniqid();
+
+    $custom_data = array(
+        'content_ids'  => [(string)$final_product_id],
+        'content_type' => 'product',
+        'value'        => (float)$product->get_price() * $quantity,
+        'currency'     => get_woocommerce_currency(),
+    );
+
+    $event_source_url = (isset($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+
+    send_fb_capi_event('AddToCart', $event_id, $custom_data, $event_source_url);
+
+    setcookie('fb_atc_event_id', '', time() - 3600, '/');
 }

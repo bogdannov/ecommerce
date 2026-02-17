@@ -5,7 +5,8 @@
       "Bash(find:*)",
       "WebSearch",
       "WebFetch(domain:github.com)",
-      "WebFetch(domain:wp-cli.org)"
+      "WebFetch(domain:wp-cli.org)",
+      "Bash(grep:*)"
     ]
   }
 }
