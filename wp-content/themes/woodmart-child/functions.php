@@ -2,7 +2,7 @@
 // Facebook Pixel Configuration
 define('FB_PIXEL_ID',      '4311413652473070');
 define('FB_ACCESS_TOKEN',  'EAAst21IXdAUBQlxZCq2oF7CViif3ZClMD8m8TDDkfMMOfNZB5qLUogG3naHPIcAgFDSRGgtonfVy3h9twuoBlNAJ4rz3ZBNqdloYd49f1KMSp0rbkfkmIpUNyZBQdo8zF8JVWVQfALHC7W5QFhSsi5D5iHgNmGthb74QMIF974IclTTFTvkHCl2AI8ZCZAPhILl2wZDZD');
-define('FB_TEST_CODE',     'TEST2983');
+define('FB_TEST_CODE',     'TEST1789');
 
 /**
  * Enqueue script and styles for child theme
@@ -216,13 +216,13 @@ add_action('wp_enqueue_scripts', function() {
             );
         }
     } elseif (is_checkout() && !is_wc_endpoint_url('order-received')) {
-        // Добавляем параметры для InitiateCheckout
         $fb_vars = array(
-            'event' => 'InitiateCheckout',
-            'params' => array(
-                'value'    => (float)WC()->cart->get_total('edit'),
-                'currency' => get_woocommerce_currency(),
-                'content_type' => 'product'
+            'event'   => 'InitiateCheckout',
+            'eventID' => $GLOBALS['fb_ic_event_id'] ?? null,
+            'params'  => array(
+                'value'        => (float)WC()->cart->get_total('edit'),
+                'currency'     => get_woocommerce_currency(),
+                'content_type' => 'product',
             )
         );
     }
@@ -386,4 +386,27 @@ function send_fb_capi_add_to_cart($cart_item_key, $product_id, $quantity, $varia
     send_fb_capi_event('AddToCart', $event_id, $custom_data, $event_source_url);
 
     setcookie('fb_atc_event_id', '', time() - 3600, '/');
+}
+
+/**
+ * Facebook Conversions API (CAPI) - InitiateCheckout Event
+ * Fires on the wp hook (before wp_enqueue_scripts) so the generated event_id
+ * can be shared with the browser-side pixel for deduplication.
+ */
+add_action('wp', 'send_fb_capi_initiate_checkout', 20);
+
+function send_fb_capi_initiate_checkout() {
+    if (!class_exists('WooCommerce') || current_user_can('administrator')) return;
+    if (!is_checkout() || is_wc_endpoint_url('order-received')) return;
+
+    $event_id = 'ic_' . uniqid('', true);
+    $GLOBALS['fb_ic_event_id'] = $event_id;
+
+    $custom_data = array(
+        'value'        => (float) WC()->cart->get_total('edit'),
+        'currency'     => get_woocommerce_currency(),
+        'content_type' => 'product',
+    );
+
+    send_fb_capi_event('InitiateCheckout', $event_id, $custom_data, wc_get_checkout_url());
 }
