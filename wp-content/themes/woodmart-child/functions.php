@@ -257,7 +257,7 @@ add_action('woocommerce_thankyou', function($order_id) {
             'params'  => array(
                 'value'        => (float)$order->get_total(),
                 'currency'     => $order->get_currency(),
-                'content_ids'  => array_map('strval', array_values(wp_list_pluck($order->get_items(), 'product_id'))),
+                'content_ids'  => array_column($items, 'id'),
                 'content_type' => 'product',
                 'contents'     => $items
             )
@@ -338,7 +338,7 @@ function send_fb_capi_purchase($order_id, $posted_data, $order) {
     $custom_data = array(
         'value'        => (float)$order->get_total(),
         'currency'     => $order->get_currency(),
-        'content_ids'  => array_map('strval', array_values(wp_list_pluck($order->get_items(), 'product_id'))),
+        'content_ids'  => array_column($contents, 'id'),
         'content_type' => 'product',
         'contents'     => $contents,
     );
