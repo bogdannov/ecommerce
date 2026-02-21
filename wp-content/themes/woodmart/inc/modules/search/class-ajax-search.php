@@ -79,7 +79,16 @@ class Ajax_Search extends Singleton {
 	public function get_main_suggestions() {
 		$post_type  = $this->get_post_type();
 		$query_args = $this->build_query_args( $post_type );
-		$query      = new WP_Query( $query_args );
+
+		if ( woodmart_get_opt( 'show_out_of_stock_at_the_end' ) && 'product' === $post_type && woodmart_woocommerce_installed() ) {
+			add_filter( 'posts_clauses', array( $this, 'sort_outofstock_products_last_ajax' ), 10 );
+		}
+
+		$query = new WP_Query( $query_args );
+
+		if ( woodmart_get_opt( 'show_out_of_stock_at_the_end' ) && 'product' === $post_type && woodmart_woocommerce_installed() ) {
+			remove_filter( 'posts_clauses', array( $this, 'sort_outofstock_products_last_ajax' ), 10 );
+		}
 
 		$this->apply_relevanssi_filter( $query );
 
@@ -433,6 +442,21 @@ class Ajax_Search extends Singleton {
 		}
 
 		return $filter_data;
+	}
+
+	/**
+	 * Sort out-of-stock products to display last in AJAX search.
+	 *
+	 * @param array $clauses Associative array of the clauses for the query.
+	 *
+	 * @return array Modified clauses.
+	 */
+	public function sort_outofstock_products_last_ajax( $clauses ) {
+		if ( class_exists( '\XTS\Modules\Out_Of_Stock_Manager\Main' ) ) {
+			return \XTS\Modules\Out_Of_Stock_Manager\Main::apply_stock_sorting( $clauses, 'stock_status_meta_ajax' );
+		}
+
+		return $clauses;
 	}
 }
 

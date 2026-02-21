@@ -232,6 +232,9 @@ class Frontend extends Singleton {
 		if ( defined( 'WCML_VERSION' ) && defined( 'ICL_SITEPRESS_VERSION' ) ) {
 			$product_id     = apply_filters( 'wpml_object_id', $product_id, 'product', true, wpml_get_default_language() );
 			$email_language = apply_filters( 'wpml_current_language', null );
+		} else {
+			// For non-WPML setups (LOCO Translate, etc.), get the current locale.
+			$email_language = get_locale();
 		}
 
 		$product    = wc_get_product( $product_id );

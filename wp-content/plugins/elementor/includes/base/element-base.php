@@ -151,6 +151,8 @@ abstract class Element_Base extends Controls_Stack {
 		}
 	}
 
+	public function register_frontend_handlers() {}
+
 	/**
 	 * Get style dependencies.
 	 *
@@ -768,6 +770,7 @@ abstract class Element_Base extends Controls_Stack {
 			],
 			'data-id' => $id,
 			'data-element_type' => $this->get_type(),
+			'data-e-type' => $this->get_type(),
 		] );
 
 		$class_settings = [];
@@ -1580,7 +1583,7 @@ abstract class Element_Base extends Controls_Stack {
 	 * @param array      $data Optional. Element data. Default is an empty array.
 	 * @param array|null $args Optional. Element default arguments. Default is null.
 	 **/
-	public function __construct( array $data = [], array $args = null ) {
+	public function __construct( array $data = [], ?array $args = null ) {
 		if ( $data ) {
 			$this->is_type_instance = false;
 		} elseif ( $args ) {

@@ -71,6 +71,13 @@ class Waitlist_Email extends WC_Email {
 	public $email_language = '';
 
 	/**
+	 * Original locale storage for restoration.
+	 *
+	 * @var string
+	 */
+	protected $original_locale = '';
+
+	/**
 	 * Constructor.
 	 */
 	public function __construct() {
@@ -255,5 +262,35 @@ class Waitlist_Email extends WC_Email {
 		}
 
 		return $product_price;
+	}
+
+	/**
+	 * Switch to specified locale for non-WPML systems.
+	 *
+	 * @param string $locale Target locale.
+	 */
+	public function switch_locale( $locale ) {
+		if ( empty( $locale ) ) {
+			return;
+		}
+
+		// Store original locale.
+		$this->original_locale = get_locale();
+
+		// Only switch if locale is different.
+		if ( $locale !== $this->original_locale ) {
+			if ( function_exists( 'switch_to_locale' ) ) {
+				switch_to_locale( $locale );
+			}
+		}
+	}
+
+	/**
+	 * Restore original locale for non-WPML systems.
+	 */
+	public function restore_locale() {
+		if ( ! empty( $this->original_locale ) && function_exists( 'restore_previous_locale' ) ) {
+			restore_previous_locale();
+		}
 	}
 }

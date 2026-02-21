@@ -65,17 +65,22 @@ class Library extends Common_App {
 		/** @var ConnectModule $connect */
 		$connect = Plugin::$instance->common->get_component( 'connect' );
 		$user_id = $this->get_user_id();
+		$user_roles = $this->get_user_roles();
+		$user = $this->get( 'user' );
 
 		return array_replace_recursive( $settings, [
 			'library_connect' => [
 				'is_connected' => $is_connected,
 				'user_id' => $user_id,
+				'user_roles' => $user_roles,
 				'subscription_plans' => $connect->get_subscription_plans( 'template-library' ),
 				// TODO: Remove `base_access_level`.
 				'base_access_level' => ConnectModule::ACCESS_LEVEL_CORE,
 				'base_access_tier' => ConnectModule::ACCESS_TIER_FREE,
 				'current_access_level' => ConnectModule::ACCESS_LEVEL_CORE,
 				'current_access_tier' => ConnectModule::ACCESS_TIER_FREE,
+				'plan_type' => ConnectModule::ACCESS_TIER_FREE,
+				'user_email' => $user->email ?? null,
 			],
 		] );
 	}
@@ -126,6 +131,11 @@ class Library extends Common_App {
 		}
 	}
 
+	private function get_user_roles() {
+		$user = wp_get_current_user();
+		return $user->roles ?? [];
+	}
+
 	/**
 	 * After Connect
 	 *
@@ -147,10 +157,6 @@ class Library extends Common_App {
 				'label' => 'Site Key',
 				'value' => get_option( self::OPTION_CONNECT_SITE_KEY ),
 			],
-			'remote_info_library' => [
-				'label' => 'Remote Library Info',
-				'value' => get_option( 'elementor_remote_info_library' ),
-			],
 		];
 	}
 
@@ -158,6 +164,9 @@ class Library extends Common_App {
 		return [
 			'access_level' => ConnectModule::ACCESS_LEVEL_CORE,
 			'access_tier' => ConnectModule::ACCESS_TIER_FREE,
+			'plan_type' => ConnectModule::ACCESS_TIER_FREE,
+			'tracking_opted_in' => $this->get( 'data_share_opted_in' ) ?? false,
+			'user_id' => $this->get_user_id(),
 		];
 	}
 

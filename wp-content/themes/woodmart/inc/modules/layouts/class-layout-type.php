@@ -76,6 +76,10 @@ abstract class Layout_Type extends Singleton {
 	 * @return array
 	 */
 	public function get_body_classes( $classes ) {
+		if ( is_singular( 'woodmart_layout' ) ) {
+			$classes[] = 'page';
+		}
+
 		return $classes;
 	}
 }

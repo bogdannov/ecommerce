@@ -268,6 +268,10 @@ class Text_Block extends Widget_Base {
 			$this->add_render_attribute( 'wrapper', 'class', 'color-scheme-' . $settings['text_color_scheme'] );
 		}
 
+		if ( strpos( $settings['text'], "\n" ) !== false && wp_strip_all_tags( $settings['text'] ) !== $settings['text'] ) {
+			$settings['text'] = wpautop( $settings['text'] );
+		}
+
 		$this->add_inline_editing_attributes( 'wrapper' );
 		$this->add_inline_editing_attributes( 'text' );
 
