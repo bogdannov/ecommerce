@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Viva UGC Reviews
  * Description: Display curated UGC-style reviews with photos and videos on product pages
- * Version: 1.1.0
+ * Version: 1.2.0
  * Author: Viva Market
  * Text Domain: viva-ugc-reviews
  * Requires PHP: 7.4
@@ -70,7 +70,7 @@ class Viva_UGC_Reviews {
         // Parse shortcode attributes
         $atts = shortcode_atts([
             'limit' => 0,
-            'show_videos' => true,
+            'show_videos' => false, // Videos now appear inside cards, set true for separate horizontal scroll row
             'show_omnibus' => true,
             'show_overall_rating' => true
         ], $atts, 'product_ugc_reviews');
@@ -301,8 +301,41 @@ class Viva_UGC_Reviews {
         foreach ($reviews as $review) {
             $output .= '<div class="viva-ugc-photo-card">';
 
-            // Image (if available)
-            if (!empty($review['image']) && !empty($review['image']['url'])) {
+            // Check if review has video
+            $has_video = !empty($review['video_webp']) || !empty($review['video_mp4']);
+
+            // Video (if available) - takes priority over image
+            if ($has_video) {
+                $video_webp = $review['video_webp'];
+                $video_mp4 = $review['video_mp4'];
+
+                $output .= '<div class="viva-ugc-photo-video">';
+                $output .= sprintf(
+                    '<video autoplay muted loop playsinline preload="metadata" aria-label="%s">',
+                    esc_attr($review['customer_name'] . ' - review video')
+                );
+
+                // WebP source first (modern browsers)
+                if ($video_webp && !empty($video_webp['url'])) {
+                    $output .= sprintf(
+                        '<source src="%s" type="video/webm">',
+                        esc_url($video_webp['url'])
+                    );
+                }
+
+                // MP4 fallback
+                if ($video_mp4 && !empty($video_mp4['url'])) {
+                    $output .= sprintf(
+                        '<source src="%s" type="video/mp4">',
+                        esc_url($video_mp4['url'])
+                    );
+                }
+
+                $output .= '</video>';
+                $output .= '</div>';
+            }
+            // Image (if available and no video)
+            elseif (!empty($review['image']) && !empty($review['image']['url'])) {
                 $image = $review['image'];
                 $output .= sprintf(
                     '<img src="%s" alt="%s" class="viva-ugc-photo-image" loading="lazy" width="%d" height="%d">',
@@ -499,6 +532,7 @@ class Viva_UGC_Reviews {
                 border-radius: 8px;
                 overflow: hidden;
                 transition: transform 0.3s ease, box-shadow 0.3s ease;
+                align-self: start; /* Prevents stretching to match row height */
             }
 
             .viva-ugc-photo-card:hover {
@@ -509,6 +543,20 @@ class Viva_UGC_Reviews {
             .viva-ugc-photo-image {
                 width: 100%;
                 aspect-ratio: 1 / 1;
+                object-fit: cover;
+                display: block;
+            }
+
+            .viva-ugc-photo-video {
+                width: 100%;
+                aspect-ratio: 9 / 16;
+                overflow: hidden;
+                background: #f0f0f0;
+            }
+
+            .viva-ugc-photo-video video {
+                width: 100%;
+                height: 100%;
                 object-fit: cover;
                 display: block;
             }
