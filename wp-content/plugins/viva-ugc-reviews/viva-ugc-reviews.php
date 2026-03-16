@@ -452,6 +452,11 @@ class Viva_UGC_Reviews {
             return;
         }
 
+        // Check if required plugins are active
+        if (!function_exists('get_field') || !function_exists('wc_get_product')) {
+            return;
+        }
+
         // Get UGC ratings from ACF fields
         $ugc_rating = get_field('viva_ugc_overall_rating', $post_id);
         $ugc_count = get_field('viva_ugc_total_reviews', $post_id);
@@ -507,6 +512,11 @@ class Viva_UGC_Reviews {
      * @return string Success message with count of synced products
      */
     public function bulk_sync_all_products() {
+        // Check if required plugins are active
+        if (!function_exists('get_field') || !function_exists('wc_get_product')) {
+            return 'Error: ACF or WooCommerce is not active.';
+        }
+
         // Get all products
         $args = array(
             'post_type' => 'product',
