@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Viva UGC Reviews
  * Description: Display curated UGC-style reviews with photos and videos on product pages
- * Version: 1.3.0
+ * Version: 1.2.0
  * Author: Viva Market
  * Text Domain: viva-ugc-reviews
  * Requires PHP: 7.4
@@ -18,7 +18,6 @@ if (!defined('ABSPATH')) {
  *
  * Handles UGC review display on product pages with:
  * - ACF field integration (overall rating, total reviews, review repeater)
- * - Automatic sync to WooCommerce native rating meta (global display)
  * - Responsive photo grid (2-column mobile, 4-column desktop)
  * - Horizontal scrollable video row (9:16 vertical videos)
  * - Dual video format support (WebP + MP4)
@@ -59,9 +58,6 @@ class Viva_UGC_Reviews {
 
         // Register ACF fields programmatically
         add_action('acf/init', [$this, 'register_acf_fields']);
-
-        // Sync UGC ratings to WooCommerce meta when ACF fields are saved
-        add_action('acf/save_post', [$this, 'sync_ugc_ratings_to_woocommerce'], 20);
     }
 
     /**
@@ -431,115 +427,6 @@ class Viva_UGC_Reviews {
             </div>',
             wp_kses_post($text)
         );
-    }
-
-    /**
-     * Sync UGC ratings to WooCommerce meta fields
-     *
-     * When ACF fields for UGC ratings are saved, this automatically
-     * updates WooCommerce's native rating meta fields so that:
-     * - Sorting by rating works correctly
-     * - Filtering by rating works
-     * - All WooCommerce features use UGC ratings
-     * - Ratings display globally (product cards, quick view, widgets, etc.)
-     *
-     * @param int $post_id Post ID being saved
-     * @return void
-     */
-    public function sync_ugc_ratings_to_woocommerce($post_id) {
-        // Only run for product post type
-        if (get_post_type($post_id) !== 'product') {
-            return;
-        }
-
-        // Check if required plugins are active
-        if (!function_exists('get_field') || !function_exists('wc_get_product')) {
-            return;
-        }
-
-        // Get UGC ratings from ACF fields
-        $ugc_rating = get_field('viva_ugc_overall_rating', $post_id);
-        $ugc_count = get_field('viva_ugc_total_reviews', $post_id);
-
-        // Ensure we have numeric values (ACF returns strings sometimes)
-        $ugc_rating = !empty($ugc_rating) ? floatval($ugc_rating) : 0;
-        $ugc_count = !empty($ugc_count) ? intval($ugc_count) : 0;
-
-        // Get the WooCommerce product object
-        $product = wc_get_product($post_id);
-
-        if (!$product) {
-            return;
-        }
-
-        // Update WooCommerce's native rating meta fields
-        // These are what WooCommerce uses for display, sorting, filtering
-        update_post_meta($post_id, '_wc_average_rating', $ugc_rating);
-        update_post_meta($post_id, '_wc_review_count', $ugc_count);
-
-        // Also update rating count (used for "X ratings" vs "X reviews")
-        // Empty array for now - could be enhanced to calculate from individual reviews
-        update_post_meta($post_id, '_wc_rating_count', array(
-            5 => 0,
-            4 => 0,
-            3 => 0,
-            2 => 0,
-            1 => 0,
-        ));
-
-        // Clear product cache so changes appear immediately
-        wc_delete_product_transients($post_id);
-
-        // Log for debugging (optional - remove in production if not needed)
-        if (defined('WP_DEBUG') && WP_DEBUG) {
-            error_log(sprintf(
-                'UGC Ratings synced for product #%d: Rating=%s, Count=%d',
-                $post_id,
-                $ugc_rating,
-                $ugc_count
-            ));
-        }
-    }
-
-    /**
-     * Bulk sync all existing products' UGC ratings to WooCommerce
-     *
-     * Use this to retroactively sync ratings for products that already
-     * have UGC ratings set before this feature was added.
-     *
-     * Can be triggered via WP-CLI, admin action, or one-time script.
-     *
-     * @return string Success message with count of synced products
-     */
-    public function bulk_sync_all_products() {
-        // Check if required plugins are active
-        if (!function_exists('get_field') || !function_exists('wc_get_product')) {
-            return 'Error: ACF or WooCommerce is not active.';
-        }
-
-        // Get all products
-        $args = array(
-            'post_type' => 'product',
-            'posts_per_page' => -1,
-            'post_status' => 'publish',
-            'fields' => 'ids',
-        );
-
-        $product_ids = get_posts($args);
-
-        $synced_count = 0;
-
-        foreach ($product_ids as $product_id) {
-            // Check if product has UGC ratings
-            $ugc_rating = get_field('viva_ugc_overall_rating', $product_id);
-
-            if (!empty($ugc_rating)) {
-                $this->sync_ugc_ratings_to_woocommerce($product_id);
-                $synced_count++;
-            }
-        }
-
-        return sprintf('%d products synced successfully.', $synced_count);
     }
 
     /**
