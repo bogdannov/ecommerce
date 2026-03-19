@@ -304,7 +304,7 @@ class Abandoned_Cart extends Singleton {
 
 			if ( ! $previous_cart && ! empty( $get_cart ) ) {
 				$post_id = $this->add_abandoned_cart( $title, $metas );
-			} elseif ( $previous_cart ) {
+			} elseif ( $previous_cart && $this->post_type_name === $previous_cart->post_type ) {
 				$post_id = $previous_cart->ID;
 
 				if ( ! empty( $get_cart ) && WC()->cart->get_displayed_subtotal() > 0 ) {
@@ -537,7 +537,7 @@ class Abandoned_Cart extends Singleton {
 		$post_updated = array_merge(
 			array(
 				'ID'        => $cart_id,
-				'post_type' => $this->post_type_name,
+//				'post_type' => $this->post_type_name,
 			),
 			$post_data
 		);
@@ -584,8 +584,8 @@ class Abandoned_Cart extends Singleton {
 
 		if (
 			( is_user_logged_in() && get_current_user_id() !== intval( $cart->post_author ) ) ||
-			! isset( $_COOKIE['woodmart_guest_cart'] ) ||
-			intval( $_COOKIE['woodmart_guest_cart'] ) !== $cart_id
+			( ! is_user_logged_in() && ( ! isset( $_COOKIE['woodmart_guest_cart'] ) ||
+			intval( $_COOKIE['woodmart_guest_cart'] ) !== $cart_id ) )
 		) {
 			wc_add_notice( esc_html__( 'You are not allowed to recover this cart.', 'woodmart' ), 'error' );
 			wp_safe_redirect( wc_get_cart_url() );

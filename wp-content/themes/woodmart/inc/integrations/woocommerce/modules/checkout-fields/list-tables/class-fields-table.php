@@ -92,6 +92,10 @@ class Fields_Table extends WP_List_Table {
 		$current = '';
 
 		if ( ! empty( $item['class'] ) ) {
+			if ( is_string( $item['class'] ) ) {
+				$item['class'] = explode( ' ', $item['class'] );
+			}
+
 			if ( in_array( 'form-row-first', $item['class'], true ) ) {
 				$current = 'form-row-first';
 			} elseif ( in_array( 'form-row-wide', $item['class'], true ) ) {

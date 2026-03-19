@@ -241,7 +241,13 @@ if ( ! function_exists( 'woodmart_elementor_products_template' ) ) {
 			$query_args['offset'] = $settings['offset'];
 		}
 		if ( 'sale' === $settings['post_type'] ) {
-			$query_args['post__in'] = array_merge( array( 0 ), wc_get_product_ids_on_sale() );
+			$sale_products = wc_get_product_ids_on_sale();
+
+			if ( ! empty( $args['post__not_in'] ) ) {
+				$sale_products = array_diff( $sale_products, $query_args['post__not_in'] );
+			}
+
+			$query_args['post__in'] = array_merge( array( 0 ), $sale_products );
 		}
 		if ( 'bestselling' === $settings['post_type'] ) {
 			$query_args['orderby']  = 'meta_value_num';
@@ -609,9 +615,11 @@ if ( ! function_exists( 'woodmart_elementor_products_template' ) ) {
 
 			<?php if ( $settings['element_title'] ) : ?>
 				<?php
+				$title_tag = in_array( $settings['element_title_tag'], array_keys( woodmart_get_allowed_html() ), true ) ? $settings['element_title_tag'] : 'h4';
+
 				printf(
 					'<%1$s class="wd-el-title title element-title">%2$s</%1$s>',
-					esc_attr( apply_filters( 'woodmart_products_title_tag', $settings['element_title_tag'] ) ),
+					esc_attr( apply_filters( 'woodmart_products_title_tag', $title_tag ) ),
 					esc_html( $settings['element_title'] )
 				);
 				?>

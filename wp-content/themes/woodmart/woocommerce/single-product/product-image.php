@@ -275,7 +275,7 @@ wp_enqueue_script( 'imagesloaded' );
 					);
 
 					$thumbnail_src = get_the_post_thumbnail_url( $post->ID, $thumbnail_size );
-					$html          = '<div class="wd-carousel-item"><figure data-thumb="' . $thumbnail_src . '" data-thumb-alt="' . $alt_text . '" class="woocommerce-product-gallery__image"><a data-elementor-open-lightbox="no" href="' . esc_url( $full_size_image[0] ) . '">';
+					$html          = '<div class="wd-carousel-item"><figure data-thumb="' . $thumbnail_src . '" data-thumb-alt="' . esc_attr( $alt_text ) . '" class="woocommerce-product-gallery__image"><a data-elementor-open-lightbox="no" href="' . esc_url( $full_size_image[0] ) . '">';
 					$html         .= get_the_post_thumbnail( $post->ID, $thumb_image_size, $attributes );
 					$html         .= '</a></figure></div>';
 				} else {

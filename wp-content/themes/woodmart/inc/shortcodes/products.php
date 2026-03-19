@@ -177,7 +177,13 @@ if ( ! function_exists( 'woodmart_shortcode_products' ) ) {
 		}
 
 		if ( $post_type == 'sale' ) {
-			$args['post__in'] = array_merge( array( 0 ), wc_get_product_ids_on_sale() );
+			$sale_products = wc_get_product_ids_on_sale();
+
+			if ( ! empty( $args['post__not_in'] ) ) {
+				$sale_products = array_diff( $sale_products, $args['post__not_in'] );
+			}
+
+			$args['post__in'] = array_merge( array( 0 ), $sale_products );
 		}
 
 		if ( $post_type == 'bestselling' ) {
@@ -531,6 +537,8 @@ if ( ! function_exists( 'woodmart_shortcode_products' ) ) {
 
 		// Element title.
 		if ( ! $is_ajax && $element_title ) {
+			$element_title_tag = in_array( $element_title_tag, array_keys( woodmart_get_allowed_html() ), true ) ? $element_title_tag : 'h4';
+
 			printf(
 				'<%1$s class="wd-el-title title element-title">%2$s</%1$s>',
 				esc_attr( apply_filters( 'woodmart_products_title_tag', $element_title_tag ) ),

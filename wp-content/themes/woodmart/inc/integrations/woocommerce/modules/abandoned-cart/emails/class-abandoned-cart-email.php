@@ -223,8 +223,8 @@ if ( ! class_exists( 'XTS_Email_Abandoned_Cart' ) ) :
 			$expiry_date = '';
 
 			if ( woodmart_get_opt( 'abandoned_cart_delete_expired_coupons', true ) ) {
-				$expiry_date = time() + intval( woodmart_get_opt( 'abandoned_cart_coupon_timeframe', 1 ) ) * intval( woodmart_get_opt( 'abandoned_cart_coupon_timeframe_period', DAY_IN_SECONDS ) );
-				$expiry_date = gmdate( 'Y-m-d h:i:s', $expiry_date );
+				$expiry_date = strtotime( current_time( 'mysql' ) ) + intval( woodmart_get_opt( 'abandoned_cart_coupon_timeframe', 1 ) ) * intval( woodmart_get_opt( 'abandoned_cart_coupon_timeframe_period', DAY_IN_SECONDS ) );
+				$expiry_date = gmdate( 'Y-m-d H:i:s', $expiry_date );
 			}
 
 			if ( woodmart_is_email_preview_request() ) {

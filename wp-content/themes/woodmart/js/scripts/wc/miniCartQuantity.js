@@ -29,6 +29,7 @@
 					},
 					success : function(data) {
 						if (data && data.fragments) {
+							console.log(data.fragments)
 							$.each(data.fragments, function(key, value) {
 								if ($(key).hasClass('widget_shopping_cart_content')) {
 									var dataItemValue = $(value).find('.woocommerce-mini-cart-item[data-key="' + itemID + '"]');
@@ -42,7 +43,7 @@
 										$('.shopping-cart-widget-footer').replaceWith(dataFooterValue);
 									}
 								} else {
-									$(key).replaceWith(value);
+									$(key.replace('_wd', '')).replaceWith(value);
 								}
 							});
 

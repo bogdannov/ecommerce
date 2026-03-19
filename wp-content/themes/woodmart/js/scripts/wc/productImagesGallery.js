@@ -137,7 +137,7 @@ woodmartThemeModule.productImagesGallery = function( replaceGallery = false) {
 					createThumbnails();
 				}
 
-				if ( 'vertical' === thumbnailsDirection && ! window.getComputedStyle(galleryWrapper).getPropertyValue('--wd-thumbs-height') ) {
+				if ( 'vertical' === thumbnailsDirection && ! window.getComputedStyle(galleryWrapper).getPropertyValue('--wd-thumbs-height') && thumbnailsWrapper.offsetHeight ) {
 					galleryWrapper.style.setProperty('--wd-thumbs-height', thumbnailsWrapper.offsetHeight + 'px');
 				}
 

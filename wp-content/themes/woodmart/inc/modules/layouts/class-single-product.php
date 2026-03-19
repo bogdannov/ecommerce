@@ -164,6 +164,8 @@ class Single_Product extends Layout_Type {
 	 * @return array
 	 */
 	public function get_body_classes( $classes ) {
+		parent::get_body_classes( $classes );
+
 		if ( is_singular( 'woodmart_layout' ) && Main::get_instance()->has_custom_layout( 'single_product' ) ) {
 			$classes[] = 'single-product';
 		}

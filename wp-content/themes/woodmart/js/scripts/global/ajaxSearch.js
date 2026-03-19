@@ -114,7 +114,11 @@
 
 							$(container).removeAttr('style');
 						},
-						onSelect: function() {
+						onSelect: function(suggestion) {							
+							if (suggestion.permalink.length > 0) {
+								window.location.href = suggestion.permalink;
+							}
+
 							$this.parent().find('.wd-search-results').removeClass('wd-opened');
 						},
 						onSearchComplete: function() {
@@ -160,7 +164,7 @@
 								var ariaLabel = '';
 
 								if (suggestion.value) {
-									ariaLabel = `aria-label="${suggestion.value}"`;
+									ariaLabel = `aria-label="${suggestion.value.replace(/(<([^>]+)>)/ig, '')}"`;
 								}
 
 								returnValue += ` <a class="wd-fill" href="${suggestion.permalink}" ${ariaLabel}></a>`;

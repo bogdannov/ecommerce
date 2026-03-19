@@ -49,22 +49,37 @@ class Main extends Singleton {
 	 * @param WP_Query $query Current query.
 	 */
 	public function change_main_products_loop_query( $clauses, $query ) {
+		$doing_ajax = function_exists( 'is_ajax' ) ? \is_ajax() : ( defined( 'DOING_AJAX' ) && DOING_AJAX );
+
 		if (
+			( is_admin() && ! $doing_ajax ) ||
 			! function_exists( 'is_woocommerce' ) ||
 			! is_woocommerce() ||
 			! $query->is_main_query() ||
-			! $query->get( 'wc_query' ) === 'product_query' ||
+			'product_query' !== $query->get( 'wc_query' ) ||
 			! woodmart_get_opt( 'show_out_of_stock_at_the_end' )
 		) {
 			return $clauses;
 		}
 
+		return self::apply_stock_sorting( $clauses, 'stock_status_meta' );
+	}
+
+	/**
+	 * Apply stock status sorting to clauses.
+	 *
+	 * @param array  $clauses The query clauses.
+	 * @param string $alias   The table alias to use.
+	 *
+	 * @return array Modified clauses.
+	 */
+	public static function apply_stock_sorting( $clauses, $alias = 'stock_status_meta' ) {
 		global $wpdb;
 
-		$clauses['join'] .= " LEFT JOIN {$wpdb->postmeta} AS stock_status_meta 
-		ON ({$wpdb->posts}.ID = stock_status_meta.post_id AND stock_status_meta.meta_key = '_stock_status') ";
+		$clauses['join'] .= " LEFT JOIN {$wpdb->postmeta} AS {$alias} 
+		ON ({$wpdb->posts}.ID = {$alias}.post_id AND {$alias}.meta_key = '_stock_status') ";
 
-		$stock_order = "CASE stock_status_meta.meta_value 
+		$stock_order = "CASE {$alias}.meta_value 
 			WHEN 'outofstock' THEN 1 
 			ELSE 0 
 		END ASC";

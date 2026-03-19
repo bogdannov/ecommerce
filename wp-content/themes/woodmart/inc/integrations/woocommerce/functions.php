@@ -404,14 +404,16 @@ if ( ! function_exists( 'woodmart_get_active_filters' ) ) {
 
 		if ( ! empty( $category_filter ) ) {
 			foreach ( array_filter( $category_filter ) as $category ) {
-				$link_ratings = implode( ',', array_diff( $category_filter, array( $category ) ) );
-				$link         = $link_ratings ? add_query_arg( 'filter_category', $link_ratings ) : remove_query_arg( 'filter_category', $base_link );
-				$link         = remove_query_arg( '_pjax', $link );
+				$link_ratings  = implode( ',', array_diff( $category_filter, array( $category ) ) );
+				$link          = $link_ratings ? add_query_arg( 'filter_category', $link_ratings ) : remove_query_arg( 'filter_category', $base_link );
+				$link          = remove_query_arg( '_pjax', $link );
+				$term          = get_term_by( 'slug', $category, 'product_cat' );
+				$category_name = ! is_wp_error( $term ) && $term instanceof WP_Term ? $term->name : ucfirst( $category );
 
 				$active_filters[] = array(
 					'link'           => $link,
 					'filter_classes' => array( 'chosen' ),
-					'anchor_text'    => ucfirst( $category ),
+					'anchor_text'    => $category_name,
 				);
 			}
 		}

@@ -507,7 +507,12 @@ class Main extends Singleton {
 			$rule = $this->manager->get_single_post_rules( $rule_id );
 
 			if ( ! empty( $rule['free_gifts'] ) && is_array( $rule['free_gifts'] ) ) {
-				$rule['free_gifts'] = array_map( 'intval', $rule['free_gifts'] );
+				$rule['free_gifts'] = array_map(
+					function( $free_gift_id ) {
+						return intval( apply_filters( 'wpml_object_id', $free_gift_id, 'product', true, apply_filters( 'wpml_current_language', null ) ) );
+					},
+					$rule['free_gifts']
+				);
 			}
 
 			$should_be_gift_ids = array_merge( $should_be_gift_ids, $rule['free_gifts'] );
